@@ -7,12 +7,22 @@
     <title>Document</title>
 </head>
 <body>
+    
+    {% if file %}
+      <a href="{{ file.newfile.url }}" > {{file.newfile.name}} </a>
+      <script>
+        window.location.replace("{{file.newfile.url}}");
+      </script>
+
+    {% else %}
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <input type="file" name="myfile">
         <button type="submit">Upload</button>
       </form>
     
+    {% endif %}
+
       
 </body>
 </html>
