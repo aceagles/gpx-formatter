@@ -1,9 +1,11 @@
 from django.shortcuts import render
 from .methods.format_gpx import remove_waypoints
-from django.http import HttpResponse
 from .models import GPXFile
 import datetime
+from django.contrib.auth.decorators import login_required
 
+
+@login_required
 def file_upload_view(request):
     file = None
     

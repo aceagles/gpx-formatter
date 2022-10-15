@@ -1,28 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
-    {% if file %}
-      <a href="{{ file.newfile.url }}" > {{file.newfile.name}} </a>
-      <script>
-        window.location.replace("{{file.newfile.url}}");
-      </script>
+{% extends 'base.html' %}
 
-    {% else %}
-    <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        <input type="file" name="myfile">
-        <button type="submit">Upload</button>
-      </form>
-    
-    {% endif %}
+{% block content %}
+  {% if file %}
+    <a href="{{ file.newfile.url }}" > {{file.newfile.name}} </a>
+    <script>
+      window.location.replace("{{file.newfile.url}}");
+    </script>
 
-      
-</body>
-</html>
+  {% else %}
+    <p>
+      Remove the waypoint tags from a GPX file so that it can be imported to garmin watches.
+    </p>
+
+
+  <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      <input type="file" name="myfile">
+      <br>
+      <button type="submit">Upload</button>
+    </form>
+  
+  {% endif %}
+
+{% endblock content %}
